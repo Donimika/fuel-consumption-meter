@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("app")
+@RequestMapping("/counter")
 public class FuelConsumptionMeterController {
     @Autowired
     FuelConsumptionMeterService fuelConsumptionMeterService;
 
     @GetMapping
-    public String renderCounter(@ModelAttribute FuelConsumptionMeterDTO fuelConsumptionMeterDTO) {
+    public String renderFuelConsumptionMeter(@ModelAttribute FuelConsumptionMeterDTO fuelConsumptionMeterDTO) {
         return "fuel-consumption-meter";
     }
 

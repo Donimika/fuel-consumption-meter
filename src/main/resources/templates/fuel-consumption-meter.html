@@ -1,11 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Fuel consumption meter</title>
 </head>
 <body>
     <h1>Count your fuel consumption!</h1>
+    <form action="/counter" method="post">
+        <label>
+            Average fuel consumption per 100 kilometres (in liters)
+            <input type="number" id="averageConsumption" name="averageConsumption" th:field="${fuelConsumptionMeterDTO.averageConsumption}">
+        </label><br/>
+        <label>
+            Number of kilometers you want to drive
+            <input type="number" id="numberOfKilometers" name="numberOfKilometers" th:field="${fuelConsumptionMeterDTO.numberOfKilometers}">
+        </label><br/>
+        <label>
+            Fuel price per liter
+            <input type="number" id="fuelPrice" name="fuelPrice" th:field="${fuelConsumptionMeterDTO.fuelPrice}">
+        </label><br/>
+        <input type="submit" value="Count"/><input type="reset" value="Reset"/>
+    </form>
+    <h5>How much do you have to refuel?</h5>
+    <h4 th:if="${totalCostOfFuel != null}"><span th:text="${totalCostOfFuel}"></span></h4>
 
 </body>
 </html>

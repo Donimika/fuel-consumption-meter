@@ -9,15 +9,15 @@ public class FuelConsumptionMeterDTO {
     /**
      * consumption per 100 kilometers
      */
-    private float averageConsumption;
+    private double averageConsumption;
     /**
      * number of planned kilometers
      */
-    private float numberOfKilometers;
+    private double numberOfKilometers;
     /**
      * fuel price per liter
      */
-    private float fuelPrice;
+    private double fuelPrice;
 
 
 }
