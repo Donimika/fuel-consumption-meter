@@ -1,7 +1,7 @@
-package controllers;
+package cz.app.controllers;
 
-import models.FuelConsumptionMeterDTO;
-import models.FuelConsumptionMeterService;
+import cz.app.models.FuelConsumptionMeterDTO;
+import cz.app.models.FuelConsumptionMeterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

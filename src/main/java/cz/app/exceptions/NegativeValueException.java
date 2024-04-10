@@ -1,4 +1,4 @@
-package exceptions;
+package cz.app.exceptions;
 
 public class NegativeValueException extends RuntimeException {
     public NegativeValueException(String message) {

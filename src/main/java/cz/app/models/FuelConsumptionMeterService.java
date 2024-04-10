@@ -1,7 +1,7 @@
-package models;
+package cz.app.models;
 
 
-import exceptions.NegativeValueException;
+import cz.app.exceptions.NegativeValueException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -21,7 +21,7 @@ public class FuelConsumptionMeterService {
         if (fuelConsumptionMeterDTO.getNumberOfKilometers() < 0 ||
                 fuelConsumptionMeterDTO.getAverageConsumption() < 0 ||
                 fuelConsumptionMeterDTO.getFuelPrice() < 0) {
-            throw new NegativeValueException("Input values cannot be negative.");
+            throw new NegativeValueException("Error: Input values cannot be negative.");
         }
     }
 }
