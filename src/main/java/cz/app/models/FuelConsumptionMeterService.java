@@ -3,6 +3,7 @@ package cz.app.models;
 
 import cz.app.exceptions.NegativeValueException;
 import cz.app.exceptions.InvalidNumberInputException;
+import cz.app.models.dtos.TotalCostDTO;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -30,7 +31,10 @@ public class FuelConsumptionMeterService {
         double totalCostOfFuel = Math.round((totalFuelNeeded * fuelPrice) * 100.0) / 100.0;
         return Double.toString(totalCostOfFuel);
     }
-
+    /**
+     * Can be updated and validate if the input is too long as well, I can imagine if block and condition with use of. lenght on String values
+     * @throws NegativeValueException
+     */
     private void parseTotalCostDTO(TotalCostDTO totalCostDTO) throws InvalidNumberInputException {
             try  {
                 averageConsumption = Double.parseDouble(totalCostDTO.getAverageConsumption());

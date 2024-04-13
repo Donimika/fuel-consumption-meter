@@ -1,4 +1,4 @@
-package cz.app.models;
+package cz.app.models.dtos;
 
 import lombok.Getter;
 import lombok.Setter;
