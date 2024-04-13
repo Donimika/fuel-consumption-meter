@@ -1,2 +1,2 @@
 # fuel-consumption-meter
-Nicely designed fuel couter 
+Nicely designed fuel couter in progress
