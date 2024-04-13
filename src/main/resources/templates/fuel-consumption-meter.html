@@ -9,24 +9,25 @@
 <form action="/counter" method="post">
     <label>
         Average fuel consumption per 100 kilometres (in liters)
-        <input type="text" id="averageConsumption" name="averageConsumption" th:field="${fuelConsumptionMeterDTO.averageConsumption}">
+        <input type="text" id="averageConsumption" name="averageConsumption" th:field="${totalCostDTO.averageConsumption}">
     </label><br/>
     <label>
         Number of kilometers you want to drive
-        <input type="text" id="numberOfKilometers" name="numberOfKilometers" th:field="${fuelConsumptionMeterDTO.numberOfKilometers}">
+        <input type="text" id="numberOfKilometers" name="numberOfKilometers" th:field="${totalCostDTO.numberOfKilometers}">
     </label><br/>
     <label>
         Fuel price per liter
-        <input type="text" id="fuelPrice" name="fuelPrice" th:field="${fuelConsumptionMeterDTO.fuelPrice}">
+        <input type="text" id="fuelPrice" name="fuelPrice" th:field="${totalCostDTO.fuelPrice}">
     </label><br/>
     <input type="submit" value="Count"/><input type="reset" value="Reset"/>
 </form>
 
-<h3 th:if="${totalCostOfFuel != null and !totalCostOfFuel.startsWith('Error')}">
-    You have to fill up for <span th:text="${totalCostOfFuel}"></span>
+<h3 th:if="${totalCost != null and !totalCost.startsWith('Error')}">
+    You have to fill up for <span th:text="${totalCost}"> your currency.</span>
 </h3>
-<h3 th:if="${totalCostOfFuel != null and totalCostOfFuel.startsWith('Error')}">
-    <span th:text="${totalCostOfFuel}"></span>
+<p>The price is rounded to two decimal places.</p>
+<h3 th:if="${totalCost != null and totalCost.startsWith('Error')}">
+    <span th:text="${totalCost}"></span>
 </h3>
 
 </body>

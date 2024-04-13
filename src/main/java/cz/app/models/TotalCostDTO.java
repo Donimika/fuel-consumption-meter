@@ -5,19 +5,18 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class FuelConsumptionMeterDTO {
+public class TotalCostDTO {
     /**
      * consumption per 100 kilometers
      */
-    private double averageConsumption;
+    private String averageConsumption;
     /**
      * number of planned kilometers
      */
-    private double numberOfKilometers;
+    private String numberOfKilometers;
     /**
      * fuel price per liter
      */
-    private double fuelPrice;
-
+    private String fuelPrice;
 
 }

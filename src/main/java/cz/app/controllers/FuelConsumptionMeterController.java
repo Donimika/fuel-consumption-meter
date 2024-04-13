@@ -1,6 +1,6 @@
 package cz.app.controllers;
 
-import cz.app.models.FuelConsumptionMeterDTO;
+import cz.app.models.TotalCostDTO;
 import cz.app.models.FuelConsumptionMeterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,13 +17,13 @@ public class FuelConsumptionMeterController {
     FuelConsumptionMeterService fuelConsumptionMeterService;
 
     @GetMapping
-    public String renderFuelConsumptionMeter(@ModelAttribute FuelConsumptionMeterDTO fuelConsumptionMeterDTO) {
+    public String renderFuelConsumptionMeter(@ModelAttribute TotalCostDTO totalCostDTO) {
         return "fuel-consumption-meter";
     }
 
     @PostMapping
-    public String calculateTotalCostOfFuel(@ModelAttribute FuelConsumptionMeterDTO fuelConsumptionMeterDTO, Model model) {
-        model.addAttribute("totalCostOfFuel", fuelConsumptionMeterService.calculateTotalCostOfFuel(fuelConsumptionMeterDTO));
+    public String calculateTotalCostOfFuel(@ModelAttribute TotalCostDTO totalCostDTO, Model model) {
+        model.addAttribute("totalCost", fuelConsumptionMeterService.calculateTotalCostOfFuel(totalCostDTO));
         return "fuel-consumption-meter";
     }
 }
