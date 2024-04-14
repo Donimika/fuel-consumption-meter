@@ -23,8 +23,14 @@ public class FuelConsumptionMeterController {
     }
 
     @PostMapping("/totalcost")
-    public String calculateTotalCostOfFuel(@ModelAttribute TotalCostDTO totalCostDTO, Model model) {
+    public String calculateTotalCostOfFuel(@ModelAttribute TotalCostDTO totalCostDTO, Model model, @ModelAttribute TotalKilometersDTO totalKilometersDTO) {
         model.addAttribute("totalCost", fuelConsumptionMeterService.calculateTotalCostOfFuel(totalCostDTO));
+        return "fuel-consumption-meter";
+    }
+
+    @PostMapping("/totalkilometers")
+    public String calculateTotalKilometers(@ModelAttribute TotalKilometersDTO totalKilometersDTO, Model model, @ModelAttribute TotalCostDTO totalCostDTO) {
+        model.addAttribute("totalKilometers", fuelConsumptionMeterService.calculateTotalKilometers(totalKilometersDTO));
         return "fuel-consumption-meter";
     }
 }

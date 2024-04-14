@@ -64,7 +64,7 @@
         </label><br/>
         <label>
             Fuel price per liter
-            <input type="text" id="fuelPriceTotalKilometers" name="fuelPrice" th:field="${totalCostDTO.fuelPrice}">
+            <input type="text" id="fuelPriceTotalKilometers" name="fuelPrice" th:field="${totalKilometersDTO.fuelPrice}">
         </label><br/>
         <input type="submit" value="Count"/><input type="reset" value="Reset"/>
     </form>
@@ -74,7 +74,7 @@
     </h3>
 
     <h3 th:if="${totalKilometers != null and totalKilometers.startsWith('Error')}">
-        <span th:text="${totalCost}"></span>
+        <span th:text="${totalKilometers}"></span>
     </h3>
 </div>
 
