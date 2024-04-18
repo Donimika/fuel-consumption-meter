@@ -26,33 +26,31 @@ public class FuelConsumptionMeterService {
      * total fuel cost from input
      */
     private double totalFuelCost;
-    /**
-     * Merge calculateTotalCostOfFuel and calculateTotalKilometers into one method.
-     * This method will have two parameters: Object dto and a boolean calculateCost (false for calculating kilometers).
-     * It cooperates with the parsing method, using instanceof to handle different DTO types.
-     */
-    public String calculateTotalCostOfFuel(TotalCostDTO totalCostDTO) {
-        try {
-            parseDTO(totalCostDTO);
-            validateNegativeInput();
-        } catch (InvalidInputException | InvalidNumberInputException e) {
-            return e.getMessage();
-        }
-        double totalFuelNeeded = numberOfKilometers * (averageConsumption / 100);
-        double totalCostOfFuel = Math.round((totalFuelNeeded * fuelPrice) * 100.0) / 100.0;
-        return Double.toString(totalCostOfFuel);
-    }
 
-    public String calculateTotalKilometers(TotalKilometersDTO totalKilometersDTO) {
+    /**
+     * Calculates either the total cost of fuel or the total kilometers based on the provided data.
+     * @param dto               The data transfer object containing input values.
+     * @param calculateCost     A boolean flag indicating whether to calculate the total cost of fuel (true) or the total kilometers (false).
+     * @return                  If an error occurs during parsing or validation, the error message is returned.
+     */
+    public String calculateTotalCostOrKilometers(Object dto, boolean calculateCost) {
         try {
-            parseDTO(totalKilometersDTO);
+            parseDTO(dto);
             validateNegativeInput();
-        } catch (InvalidInputException | InvalidNumberInputException e) {
+        } catch (InvalidNumberInputException | InvalidInputException e) {
             return e.getMessage();
         }
-        double kilometers = totalFuelCost / (fuelPrice * (averageConsumption / 100.0));
-        double roundedKilometers = Math.round(kilometers * 1000.0) / 1000.0;
-        return Double.toString(roundedKilometers);
+
+        double result;
+        if (calculateCost) {
+            double totalFuelNeeded = numberOfKilometers * (averageConsumption / 100);
+            result = Math.round((totalFuelNeeded * fuelPrice) * 100.0) / 100.0;
+        } else {
+            double kilometers = totalFuelCost / (fuelPrice * (averageConsumption / 100.0));
+            result = Math.round(kilometers * 1000.0) / 1000.0;
+        }
+
+        return Double.toString(result);
     }
     /**
      * Parses the attributes of a DTO object and assigns them to the corresponding fields.
@@ -80,6 +78,10 @@ public class FuelConsumptionMeterService {
         }
     }
 
+    /**
+     * It will validate when user put too high value. The method name need update.
+     * @throws InvalidInputException
+     */
     private void validateNegativeInput() throws InvalidInputException {
         if (totalFuelCost < 0 || numberOfKilometers < 0 || averageConsumption < 0 || fuelPrice < 0) {
             throw new InvalidInputException("Error: Input values cannot be negative.");

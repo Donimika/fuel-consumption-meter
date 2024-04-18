@@ -3,29 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Fuel consumption meter</title>
-    <script>
-        function showForm(formId) {
-            var totalCostDiv = document.getElementById('totalCostDiv');
-            var totalKilometersDiv = document.getElementById('totalKilometersDiv');
-
-            if (formId === 'totalCostForm') {
-                totalCostDiv.style.display = 'block';
-                totalKilometersDiv.style.display = 'none';
-            } else {
-                totalCostDiv.style.display = 'none';
-                totalKilometersDiv.style.display = 'block';
-            }
-        }
-    </script>
 </head>
 <body>
 <h1>Count your ride!</h1>
 
-<select onchange="showForm(this.value)">
-    <option value="totalCostForm">Calculate Total Fuel Cost</option>
-    <option value="totalKilometersForm">Calculate Total Kilometers</option>
-</select>
 <div id="totalCostDiv" style="display: block;">
+    <h4>Calculate Total Fuel Cost</h4>
     <form id="totalCostForm" action="/counter/totalcost" method="post">
         <label>
             Average fuel consumption per 100 kilometres (in liters)
@@ -43,7 +26,7 @@
     </form>
 
     <h3 th:if="${totalCost != null and totalCost != '' and !totalCost.startsWith('Error')}">
-        You have to refuel for <span th:text="${totalCost}"></span> your currency.
+        You have to refuel for <span th:text="${totalCost}"></span> units.
     </h3>
 
 
@@ -52,7 +35,8 @@
     </h3>
 </div>
 
-<div id="totalKilometersDiv" style="display: none;">
+<div id="totalKilometersDiv" style="display: block;">
+    <h4>Calculate Total Kilometers</h4>
     <form id="totalKilometersForm" action="/counter/totalkilometers" method="post">
         <label>
             Average fuel consumption per 100 kilometres (in liters)
