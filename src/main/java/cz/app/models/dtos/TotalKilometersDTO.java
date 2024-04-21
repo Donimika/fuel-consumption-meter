@@ -9,7 +9,7 @@ public class TotalKilometersDTO {
     /**
      * consumption per 100 kilometers
      */
-    private String averageConsumption;
+    private String averageConsumptionTotKm;
     /**
      * total fuel cost planned to refuel or already refueled
      */
@@ -17,5 +17,5 @@ public class TotalKilometersDTO {
     /**
      * fuel price per liter
      */
-    private String fuelPrice;
+    private String fuelPriceTotKm;
 }

@@ -2,65 +2,97 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="description" content="Count your fuel consumption or total kilometers."/>
+    <meta name="keywords" content="fuel, counter, kilometers"/>
+    <meta name="author" content="Donimika"/>
+
+    <link rel="stylesheet" th:href="@{/styles/bootstrap.min.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/styles/styles.css}" type="text/css"/>
+
     <title>Fuel consumption meter</title>
 </head>
 <body>
+<main class="container">
 <h1>Count your ride!</h1>
 
-<div id="totalCostDiv" style="display: block;">
-    <h4>Calculate Total Fuel Cost</h4>
+
+<div id="totalCostDiv">
+    <h3>Calculate Total Fuel Cost</h3>
     <form id="totalCostForm" action="/counter/totalcost" method="post">
-        <label>
-            Average fuel consumption per 100 kilometres (in liters)
-            <input type="text" id="averageConsumptionTotalCost" name="averageConsumption" th:field="${totalCostDTO.averageConsumption}">
+        <label class="row">
+            <div    class="col-10">
+                Average fuel consumption per 100 kilometres (in liters)
+            </div>
+            <input  class="col-2"
+                    type="text" id="averageConsumptionTotalCost" name="averageConsumption" th:field="${totalCostDTO.averageConsumption}">
         </label><br/>
-        <label>
-            Number of kilometers you want to drive
-            <input type="text" id="numberOfKilometers" name="numberOfKilometers" th:field="${totalCostDTO.numberOfKilometers}">
+        <label class="row">
+            <div    class="col-10">
+                Number of kilometers you want to drive
+            </div>
+            <input  class="col-2"
+                    type="text" id="numberOfKilometers" name="numberOfKilometers" th:field="${totalCostDTO.numberOfKilometers}">
         </label><br/>
-        <label>
-            Fuel price per liter
-            <input type="text" id="fuelPriceTotalCost" name="fuelPrice" th:field="${totalCostDTO.fuelPrice}">
+        <label class="row">
+            <div    class="col-10">
+                Fuel price per liter
+            </div>
+            <input  class="col-2"
+                    type="text" id="fuelPriceTotalCost" name="fuelPrice" th:field="${totalCostDTO.fuelPrice}">
         </label><br/>
-        <input type="submit" value="Count"/><input type="reset" value="Reset"/>
+        <input type="submit" value="Count!" class="button btn"/>
     </form>
 
-    <h3 th:if="${totalCost != null and totalCost != '' and !totalCost.startsWith('Error')}">
+    <h3 th:if="${totalCost != null and totalCost != '' and !totalCost.startsWith('Error')}"
+        >
         You have to refuel for <span th:text="${totalCost}"></span> units.
     </h3>
 
 
-    <h3 th:if="${totalCost != null and totalCost.startsWith('Error')}">
+    <h3 th:if="${totalCost != null and totalCost.startsWith('Error')}"
+        >
         <span th:text="${totalCost}"></span>
     </h3>
 </div>
 
-<div id="totalKilometersDiv" style="display: block;">
-    <h4>Calculate Total Kilometers</h4>
+<div id="totalKilometersDiv">
+    <h3>Calculate how many kilometers you will drive</h3>
     <form id="totalKilometersForm" action="/counter/totalkilometers" method="post">
-        <label>
-            Average fuel consumption per 100 kilometres (in liters)
-            <input type="text" id="averageConsumptionTotalKilometers" name="averageConsumption" th:field="${totalKilometersDTO.averageConsumption}">
+        <label class="row">
+            <div    class="col-10">
+                Average fuel consumption per 100 kilometres (in liters)
+            </div>
+            <input  class="col-2"
+                    type="text" id="averageConsumptionTotalKilometers" name="averageConsumption" th:field="${totalKilometersDTO.averageConsumptionTotKm}">
         </label><br/>
-        <label>
-            How much do you want to refuel?
-            <input type="text" id="fuelCost" name="fuelCost" th:field="${totalKilometersDTO.totalFuelCost}">
+        <label class="row">
+            <div    class="col-10">
+                How much do you want to refuel?
+            </div>
+            <input  class="col-2"
+                    type="text" id="fuelCost" name="fuelCost" th:field="${totalKilometersDTO.totalFuelCost}">
         </label><br/>
-        <label>
-            Fuel price per liter
-            <input type="text" id="fuelPriceTotalKilometers" name="fuelPrice" th:field="${totalKilometersDTO.fuelPrice}">
+        <label class="row">
+            <div    class="col-10">
+                Fuel price per liter
+            </div>
+            <input  class="col-2"
+                    type="text" id="fuelPriceTotalKilometers" name="fuelPrice" th:field="${totalKilometersDTO.fuelPriceTotKm}">
         </label><br/>
-        <input type="submit" value="Count"/><input type="reset" value="Reset"/>
+        <input type="submit" value="Count!" class="button btn"/>
     </form>
 
-    <h3 th:if="${totalKilometers != null and totalKilometers != '' and !totalKilometers.startsWith('Error')}">
+    <h3 th:if="${totalKilometers != null and totalKilometers != '' and !totalKilometers.startsWith('Error')}"
+        >
         It will be enough fuel to comfortably travel around <span th:text="${totalKilometers}"></span> kilometers.
     </h3>
 
-    <h3 th:if="${totalKilometers != null and totalKilometers.startsWith('Error')}">
+    <h3 th:if="${totalKilometers != null and totalKilometers.startsWith('Error')}"
+        >
         <span th:text="${totalKilometers}"></span>
     </h3>
 </div>
 
+</main>
 </body>
 </html>

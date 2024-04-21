@@ -62,9 +62,9 @@ public class FuelConsumptionMeterService {
         try {
             if (dto instanceof TotalKilometersDTO) {
                 TotalKilometersDTO totalKilometersDTO = (TotalKilometersDTO) dto;
-                averageConsumption = Double.parseDouble(totalKilometersDTO.getAverageConsumption());
+                averageConsumption = Double.parseDouble(totalKilometersDTO.getAverageConsumptionTotKm());
                 totalFuelCost = Double.parseDouble(totalKilometersDTO.getTotalFuelCost());
-                fuelPrice = Double.parseDouble(totalKilometersDTO.getFuelPrice());
+                fuelPrice = Double.parseDouble(totalKilometersDTO.getFuelPriceTotKm());
             } else if (dto instanceof TotalCostDTO) {
                 TotalCostDTO totalCostDTO = (TotalCostDTO) dto;
                 averageConsumption = Double.parseDouble(totalCostDTO.getAverageConsumption());

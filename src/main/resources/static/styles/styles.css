@@ -1,0 +1,41 @@
+body {
+    background: #000000;
+}
+
+main {
+    color: #BC6FF1;
+    font-size: 1.7rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #892CDC;
+    font-weight: bold;
+    padding: 1rem 0rem;
+}
+
+h1 {
+    padding-bottom: 4rem;
+    text-align: center;
+}
+
+#totalCostDiv {
+    padding-bottom: 4rem;
+    margin-bottom: 4rem;
+}
+
+#totalKilometersDiv {
+    padding-top: 4rem;
+    margin-top: 4rem;
+}
+
+.button {
+    background: #BC6FF1;
+    font-weight: bold;
+    font-size: 1.4rem;
+    padding: 10px 20px;
+    line-height: 1;
+}
+
+input {
+    height: 2.5rem;
+}

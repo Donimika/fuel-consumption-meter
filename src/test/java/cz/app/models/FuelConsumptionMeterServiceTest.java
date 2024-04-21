@@ -3,7 +3,6 @@ package cz.app.models;
 import cz.app.models.dtos.TotalCostDTO;
 import cz.app.models.dtos.TotalKilometersDTO;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -30,9 +29,9 @@ class FuelConsumptionMeterServiceTest {
         FuelConsumptionMeterService service = new FuelConsumptionMeterService();
         // Create TotalKilometersDTO with example values
         TotalKilometersDTO totalKilometersDTO = new TotalKilometersDTO();
-        totalKilometersDTO.setAverageConsumption("6");
+        totalKilometersDTO.setAverageConsumptionTotKm("6");
         totalKilometersDTO.setTotalFuelCost("1200");
-        totalKilometersDTO.setFuelPrice("38.1");
+        totalKilometersDTO.setFuelPriceTotKm("38.1");
         // Calculate total kilometers
         String costResult = service.calculateTotalCostOrKilometers(totalKilometersDTO, false);
         // Assert the result
