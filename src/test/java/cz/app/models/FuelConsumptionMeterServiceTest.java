@@ -30,7 +30,7 @@ class FuelConsumptionMeterServiceTest {
         // Create TotalKilometersDTO with example values
         TotalKilometersDTO totalKilometersDTO = new TotalKilometersDTO();
         totalKilometersDTO.setAverageConsumptionTotKm("6");
-        totalKilometersDTO.setTotalFuelCost("1200");
+        totalKilometersDTO.setPriceForRefueling("1200");
         totalKilometersDTO.setFuelPriceTotKm("38.1");
         // Calculate total kilometers
         String costResult = service.calculateTotalCostOrKilometers(totalKilometersDTO, false);

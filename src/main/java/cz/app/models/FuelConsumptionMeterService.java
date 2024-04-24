@@ -25,7 +25,7 @@ public class FuelConsumptionMeterService {
     /**
      * total fuel cost from input
      */
-    private double totalFuelCost;
+    private double priceForRefueling;
 
     /**
      * Calculates either the total cost of fuel or the total kilometers based on the provided data.
@@ -36,7 +36,7 @@ public class FuelConsumptionMeterService {
     public String calculateTotalCostOrKilometers(Object dto, boolean calculateCost) {
         try {
             parseDTO(dto);
-            validateNegativeInput();
+            validateInvalidInput();
         } catch (InvalidNumberInputException | InvalidInputException e) {
             return e.getMessage();
         }
@@ -46,7 +46,7 @@ public class FuelConsumptionMeterService {
             double totalFuelNeeded = numberOfKilometers * (averageConsumption / 100);
             result = Math.round((totalFuelNeeded * fuelPrice) * 100.0) / 100.0;
         } else {
-            double kilometers = totalFuelCost / (fuelPrice * (averageConsumption / 100.0));
+            double kilometers = priceForRefueling / (fuelPrice * (averageConsumption / 100.0));
             result = Math.round(kilometers * 1000.0) / 1000.0;
         }
 
@@ -63,7 +63,7 @@ public class FuelConsumptionMeterService {
             if (dto instanceof TotalKilometersDTO) {
                 TotalKilometersDTO totalKilometersDTO = (TotalKilometersDTO) dto;
                 averageConsumption = Double.parseDouble(totalKilometersDTO.getAverageConsumptionTotKm());
-                totalFuelCost = Double.parseDouble(totalKilometersDTO.getTotalFuelCost());
+                priceForRefueling = Double.parseDouble(totalKilometersDTO.getPriceForRefueling());
                 fuelPrice = Double.parseDouble(totalKilometersDTO.getFuelPriceTotKm());
             } else if (dto instanceof TotalCostDTO) {
                 TotalCostDTO totalCostDTO = (TotalCostDTO) dto;
@@ -82,14 +82,31 @@ public class FuelConsumptionMeterService {
      * It will validate when user put too high value. The method name need update.
      * @throws InvalidInputException
      */
-    private void validateNegativeInput() throws InvalidInputException {
-        if (totalFuelCost < 0 || numberOfKilometers < 0 || averageConsumption < 0 || fuelPrice < 0) {
-            throw new InvalidInputException("Error: Input values cannot be negative.");
+    private void validateInvalidInput() throws InvalidInputException {
+        if (priceForRefueling < 0 || numberOfKilometers < 0 || averageConsumption < 0 || fuelPrice < 0) {
+            throw new InvalidInputException("ERROR: Input values cannot be negative.");
         }
         if (averageConsumption > 500) {
-            throw new InvalidInputException("Error: Average consumption can't be that high. " +
-                    "The most fuel-hungry vehicle, Bentley Meteoer, reqires 117 litres of fuel to go 100km." +
+            throw new InvalidInputException("ERROR: Average consumption can't be that high. " +
+                    "The most fuel-hungry vehicle, Bentley Meteoer, reqires 117 litres of fuel to go 100km. " +
                     "It's highly unlikely you'd need more than 500.");
+        }
+
+        if (numberOfKilometers > 100000) {
+            throw new InvalidInputException("ERROR: 100 000 km is not enough? " +
+                    "Where are you going? To the moon? " +
+                    "The approximate distance of the Moon from the Earth is 384,403 km.");
+        }
+
+        if (priceForRefueling > 1500000) {
+            throw new InvalidInputException("ERROR: I think you made a mistake. " +
+                    "Do you even have that much money? " +
+                    "In 2021, the truck driver stole diesel worth 1.1 million. But it took him 2 and half a years.");
+        }
+
+        if (fuelPrice > 1000) {
+            throw new InvalidInputException("ERROR: Where do you live? " +
+                    "It can't be that expensive. It is price per liter, not per 100 liter");
         }
     }
 }

@@ -13,7 +13,7 @@ public class TotalKilometersDTO {
     /**
      * total fuel cost planned to refuel or already refueled
      */
-    private String totalFuelCost;
+    private String priceForRefueling;
     /**
      * fuel price per liter
      */
