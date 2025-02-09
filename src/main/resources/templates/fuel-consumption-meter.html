@@ -13,7 +13,10 @@
 </head>
 <body>
 <main class="container">
-    <h1>Count your ride!</h1>
+    <a href="?lang=en">ENG</a>
+    <a href="?lang=cs">CZ</a>
+
+    <h1 th:text="#{fuel.label}"></h1>
 
     <div id="totalCostDiv">
         <h3 class="secondHeading">Calculate total fuel cost</h3>
@@ -39,7 +42,7 @@
                 <input  class="col-2"
                         type="text" id="fuelPriceTotalCost" name="fuelPrice" th:field="${totalCostDTO.fuelPrice}">
             </label><br/>
-            <input type="submit" value="Count!" class="button btn"/>
+            <input type="submit" class="button btn" th:value="#{fuel.calculate}"/>
         </form>
 
         <h3 th:if="${totalCost != null and totalCost != '' and !totalCost.startsWith('ERROR')}"
@@ -83,7 +86,7 @@
                 <input  class="col-2"
                         type="text" id="fuelPriceTotalKilometers" name="fuelPrice" th:field="${totalKilometersDTO.fuelPriceTotKm}">
             </label><br/>
-            <input type="submit" value="Count!" class="button btn"/>
+            <input type="submit" class="button btn" th:value="#{fuel.calculate}"/>
         </form>
 
         <h3 th:if="${totalKilometers != null and totalKilometers != '' and !totalKilometers.startsWith('ERROR')}"
